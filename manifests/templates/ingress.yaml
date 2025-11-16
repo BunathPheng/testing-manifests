@@ -1,0 +1,21 @@
+---
+# Source: helm for kubernetes/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: testing                  # Ingress name
+  labels:
+    app: testing
+spec:
+  ingressClassName: nginx   # Optional ingressClass
+  rules:
+    - host: "testing.smartops.space"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: testing               # Links to Service name dynamically
+                port:
+                  number: 8080  # Links to service port dynamically
